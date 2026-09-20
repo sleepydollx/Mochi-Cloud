@@ -16,7 +16,7 @@ app.MapPost("/api/save", (int newScore, int newLevel) =>
 {
     if (newScore < 0 || newLevel < 1)
     {
-        return Results.BadRequest("Score tidak boleh negatif dan Level minimal 1!");
+        return Results.BadRequest("Score Cant be negative and Level must be at least 1.");
     }
 
     playerScore = newScore;
@@ -30,7 +30,7 @@ app.MapPost("/api/reset", () =>
 {
     playerScore = 0;
     playerLevel = 1;
-    Console.WriteLine("Data player berhasil di-reset!");
+    Console.WriteLine("Player data has been reset!");
     return Results.Ok(new { Message = "Data reset", Score = playerScore, Level = playerLevel });
 });
 
