@@ -6,7 +6,7 @@ List<Player> leaderboard = new List<Player>();
 // ROUTE 1: LOAD
 app.MapGet("/api/load", () => 
 {
-    Console.WriteLine("Game meminta data leaderboard...");
+    Console.WriteLine("Asking for leaderboard data...");
     
     return leaderboard; 
 });
@@ -14,16 +14,16 @@ app.MapGet("/api/load", () =>
 // ROUTE 2: SAVE
 app.MapPost("/api/save", (string playerName, int newScore, int newLevel) => 
 {
-    Player pemainBaru = new Player 
+    Player newPlayer = new Player 
     { 
         Name = playerName, 
         Score = newScore, 
         Level = newLevel 
     };
+
+    leaderboard.Add(newPlayer);
     
-    leaderboard.Add(pemainBaru);
-    
-    Console.WriteLine($"[DATA MASUK] {playerName} dengan skor {newScore}");
+    Console.WriteLine($"[DATA INPUT] {playerName} dengan skor {newScore}");
     return $"Data {playerName} berhasil ditambahkan ke server!";
 });
 
